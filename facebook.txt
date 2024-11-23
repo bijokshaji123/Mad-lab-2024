@@ -1,0 +1,120 @@
+Facebook
+
+
+MainActivity.java
+
+package com.example.s3mca55;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.Toast;
+public class MainActivity extends AppCompatActivity {
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ // Find the ImageView elements by their IDs
+ ImageView facebookView = findViewById(R.id.fbView);
+ ImageView likeImgView = findViewById(R.id.likeView);
+ ImageView commentImgView = findViewById(R.id.cmmntView);
+ ImageView shareImgView = findViewById(R.id.shareView);
+ // Set click listeners for the ImageViews
+ likeImgView.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ showToast("You clicked the Like button");
+ }
+ });
+ commentImgView.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ showToast("You clicked the Comment button");
+ }
+ });
+ shareImgView.setOnClickListener(new View.OnClickListener() {
+ @Override
+ public void onClick(View view) {
+ showToast("You clicked the Share button");
+ }
+ });
+ }
+ // Helper method to display a toast message
+ private void showToast(String message){
+ Toast.makeText(this, message, Toast.LENGTH_LONG).show();
+ }
+}
+
+
+
+activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="fill_parent"
+ android:layout_height="fill_parent"
+ android:paddingLeft="16dp"
+ android:paddingRight="16dp" >
+ <ScrollView
+ android:layout_width="match_parent"
+ android:layout_height="match_parent">
+ <LinearLayout
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:orientation="vertical">
+ <ImageView
+ android:id="@+id/fbView"
+ android:layout_width="200dp"
+ android:layout_height="80dp"
+ android:layout_gravity="center"
+ android:src="@drawable/f"/>
+ <ImageView
+ android:id="@+id/imageView6"
+ android:layout_width="match_parent"
+ android:layout_height="281dp"
+ android:src="@drawable/f"/>
+ <androidx.gridlayout.widget.GridLayout
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:layout_gravity="center"
+ android:layout_marginTop="40dp"
+ app:columnCount="4"
+ app:rowCount="4">
+ <ImageView
+ android:id="@+id/likeView"
+ android:layout_width="110dp"
+ android:layout_height="83dp"
+ app:layout_row="0"
+ app:layout_column="1"
+ android:clickable="true"
+ android:onClick="onLikeClick"
+ app:layout_gravity="center"
+ android:src="@drawable/f"/>
+ <ImageView
+ android:id="@+id/cmmntView"
+ android:layout_width="111dp"
+ android:layout_height="66dp"
+ app:layout_row="0"
+ app:layout_column="2"
+ app:layout_gravity="center"
+ android:clickable="true"
+ android:onClick="onComntClick"
+ android:src="@drawable/f"/>
+ <ImageView
+ android:id="@+id/shareView"
+ android:layout_width="93dp"
+ android:layout_height="86dp"
+ app:layout_row="0"
+ app:layout_column="3"
+ app:layout_gravity="center"
+ android:clickable="true"
+ android:onClick="onShareClick"
+ android:src="@drawable/f"/>
+ </androidx.gridlayout.widget.GridLayout>
+ </LinearLayout>
+ </ScrollView>
+</RelativeLayout>
+

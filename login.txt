@@ -1,0 +1,123 @@
+loginform
+
+
+MainActivity.java
+
+
+package com.example.s3mca55;
+import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.widget.Toast;
+import android.widget.EditText;
+import android.widget.Button;
+public class MainActivity extends AppCompatActivity {
+ private static final String VALID_USR_NAME = "user";
+ private static final String VALID_PWD = "pass";
+ private EditText username;
+ private EditText password;
+ private Button loginbtn;
+ @Override
+ protected void onCreate(Bundle savedInstanceState) {
+ super.onCreate(savedInstanceState);
+ setContentView(R.layout.activity_main);
+ username = findViewById(R.id.uname);
+ password = findViewById(R.id.pwd);
+ loginbtn = findViewById(R.id.lbtn);
+ loginbtn.setOnClickListener(view -> {
+ String enteredUname = username.getText().toString().trim();
+ String enteredPwd = password.getText().toString().trim();
+ if (enteredUname.isEmpty() || enteredPwd.isEmpty()) {
+ showToast("Please enter both username and password");
+ } else if (isValid(enteredUname, enteredPwd)) {
+ showToast("Login Success");
+ } else {
+ showToast("Invalid credentials");
+ }
+ });
+ }
+ public boolean isValid(String euname, String epwd) {
+ return VALID_USR_NAME.equals(euname) && VALID_PWD.equals(epwd);
+ }
+ private void showToast(String msg) {
+ Toast.makeText(this, msg, Toast.LENGTH_LONG).show();
+ }
+}
+
+
+
+
+activity_main.xml
+
+
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+xmlns:android="http://schemas.android.com/apk/res/android"
+ xmlns:app="http://schemas.android.com/apk/res-auto"
+ xmlns:tools="http://schemas.android.com/tools"
+ android:layout_width="match_parent"
+ android:layout_height="match_parent"
+ tools:context=".MainActivity">
+ <LinearLayout
+ android:layout_width="0dp"
+ android:layout_height="0dp"
+ android:orientation="vertical"
+ app:layout_constraintBottom_toBottomOf="parent"
+ app:layout_constraintEnd_toEndOf="parent"
+ app:layout_constraintStart_toStartOf="parent"
+ app:layout_constraintTop_toTopOf="parent"
+ app:layout_constraintVertical_bias="0.0">
+ <TextView
+ android:id="@+id/textView5"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="LOGIN FORM"
+ android:textAlignment="center"
+ android:textSize="24sp"
+ android:padding="16dp" />
+ <TextView
+ android:id="@+id/textView6"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="Username"
+ android:padding="16dp" />
+ <EditText
+ android:id="@+id/uname"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:hint="Enter username
+ android:inputType="text"
+ android:padding="16dp" />
+ <TextView
+ android:id="@+id/textView7"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="Password"
+ android:padding="16dp" />
+ <EditText
+ android:id="@+id/pwd"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:inputType="textPassword"
+ android:hint="Enter password"
+ android:padding="16dp" />
+ <Button
+ android:id="@+id/lbtn"
+ android:layout_width="match_parent"
+ android:layout_height="wrap_content"
+ android:text="Login"
+ android:padding="16dp" />
+ </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
